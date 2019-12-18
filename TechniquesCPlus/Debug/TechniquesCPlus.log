@@ -1,3 +1,0 @@
-﻿  TechniquesCPlus.cpp
-TechniquesCPlus.obj : error LNK2019: 无法解析的外部符号 "public: __thiscall RCPtr<struct String::StringValue>::RCPtr<struct String::StringValue>(class RCPtr<struct String::StringValue> const &)" (??0?$RCPtr@UStringValue@String@@@@QAE@ABV0@@Z)，该符号在函数 "public: __thiscall String::String(class String const &)" (??0String@@QAE@ABV0@@Z) 中被引用
-F:\vs2017workplace\TechniquesCPlus\Debug\TechniquesCPlus.exe : fatal error LNK1120: 1 个无法解析的外部命令
