@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="LimitClassCount.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ReferenceCounting.h" />
     <ClInclude Include="SmartPtr.h" />
     <ClInclude Include="VirtualConstructor.h" />
   </ItemGroup>
@@ -164,6 +165,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ReferenceCounting.cpp" />
     <ClCompile Include="TechniquesCPlus.cpp" />
     <ClCompile Include="VirtualConstructor.cpp" />
   </ItemGroup>
