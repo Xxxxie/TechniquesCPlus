@@ -148,3 +148,65 @@ String::StringValue::~StringValue()
 {
 	delete[] data;
 }
+
+template<class T>
+void RCIPtr<T>::init()
+{
+	if (counter->isShareable() == false)
+	{
+		T* oldValue = counter->pointee;
+		counter = new CountHolder;
+		counter->pointee = new T(*oldValue);
+	}
+
+	counter->addReference();
+}
+
+
+template<class T>
+RCIPtr<T>::RCIPtr(T * realPtr):counter(new CountHolder)
+{
+	counter->pointee = realPtr;
+	init();
+}
+
+
+//此对象的counter与 rhs的相同，直接使用拷贝构造
+template<class T>
+RCIPtr<T>::RCIPtr(const RCIPtr & rhs):counter(rhs->counter)
+{
+	init();
+}
+
+
+template<class T>
+RCIPtr<T>::~RCIPtr()
+{
+	//当引用为0时 析构
+	counter->removeReference();
+}
+
+template<class T>
+RCIPtr<T>&  RCIPtr<T>::operator=(const RCIPtr<T> &rhs)
+{
+	if (counter != rhs.counter)
+	{
+		counter->removeReference();
+		counter = rhs.counter;
+		init();
+	}
+
+	return *this;
+}
+
+template<class T>
+const T*  RCIPtr<T>::operator->() const
+{
+	return counter->pointee;
+}
+
+template<class T>
+const T& RCIPtr<T>::operator*() const
+{
+	return *(counter->pointee);
+}

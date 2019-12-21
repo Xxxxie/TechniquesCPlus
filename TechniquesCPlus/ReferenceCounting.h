@@ -46,6 +46,7 @@ private:
 
 
 ///需要引用计数的类
+//String 类的引用计数
 class String 
 {
 public:
@@ -73,3 +74,67 @@ private:
 	RCPtr<StringValue> value;
 };
 
+//扩展引用计数
+
+template<class T>
+class RCIPtr 
+{
+public:
+	RCIPtr(T* realPtr = 0);
+	RCIPtr(const RCIPtr &rhs);
+	~RCIPtr();
+
+	RCIPtr & operator=(const RCIPtr &rhs);
+
+	const T* operator->() const;
+	T* operator->();
+
+	const T& operator*() const;
+
+	T& operator*();
+
+private:
+	struct CountHolder:public RCObject
+	{
+		T* pointee;
+		~CountHolder();
+	};
+
+	CountHolder *counter;
+	void init();
+	void makeCopy();
+};
+
+
+//设计一个普通类
+class Widget
+{
+public:
+	Widget(int size);
+	Widget(const Widget& rhs);
+	~Widget();
+
+	Widget& operator=(const Widget& rhs);
+
+	void doThis();
+
+	void showThat() const;
+
+private:
+	int value;
+};
+
+
+//对于普通类的引用计数类
+class RCWidget
+{
+public:
+	RCWidget(int size) :value(new Widget(size)) {}
+
+	void doThis() { value->doThis(); }
+
+	void showThat() const { value->showThat(); }
+
+private:
+	RCIPtr<Widget> value;
+};
