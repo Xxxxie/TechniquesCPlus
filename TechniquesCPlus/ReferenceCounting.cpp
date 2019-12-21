@@ -32,7 +32,9 @@ RCPtr<T> & RCPtr<T>::operator=(const RCPtr<T>& rhs)
 {
 	if (pointpee != rhs.pointpee)
 	{
-		pointpee->removeReference();
+		//确保pointpee不为空
+		if (pointpee != nullptr)
+			pointpee->removeReference();
 
 		pointpee = rhs.pointpee;
 		init();
@@ -86,6 +88,7 @@ bool RCObject::isShared() const
 }
 
 
+
 String::String(const char* initValue):value(new StringValue(initValue))
 {
 	
@@ -128,8 +131,17 @@ String& String::operator=(const String &rhs)
 
 void String::StringValue::init(const char* initvalue)
 {
-	data = new char[strlen(initvalue) + 1];
-	strcpy(data, initvalue);
+	//initvalue 为空时
+	if (initvalue == 0)
+	{
+		data = nullptr;
+	}
+	else
+	{
+		data = new char[strlen(initvalue) + 1];
+		strcpy(data, initvalue);
+	}
+	
 }
 
 String::StringValue::~StringValue()

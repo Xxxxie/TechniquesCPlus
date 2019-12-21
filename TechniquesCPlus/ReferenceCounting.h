@@ -49,10 +49,15 @@ private:
 class String 
 {
 public:
+	
 	String(const char* value = 0);
 	const char& operator[](int index) const;
 	char& operator[](int index);
 	String & operator=(const String& rhs);
+	String(const String& rhs)
+	{
+		value = rhs.value;
+	}
 
 private:
 
