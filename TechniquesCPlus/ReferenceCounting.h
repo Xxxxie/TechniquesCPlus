@@ -75,7 +75,7 @@ private:
 };
 
 //扩展引用计数
-
+//拥有引用计数功能的智能指针模板
 template<class T>
 class RCIPtr 
 {

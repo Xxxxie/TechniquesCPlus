@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="LimitClassCount.h" />
+    <ClInclude Include="MyStack.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReferenceCounting.h" />
     <ClInclude Include="SmartPtr.h" />
