@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <cstddef>
 template<class BeingCount>
 class Counted
 {

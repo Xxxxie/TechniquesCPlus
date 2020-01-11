@@ -1,5 +1,5 @@
 #include "ReferenceCounting.h"
-
+#include <cstring>
 
 template<class T>
 void RCPtr<T>::init()
