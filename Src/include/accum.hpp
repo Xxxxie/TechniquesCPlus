@@ -8,7 +8,7 @@ inline typename AccumulationTraits<T>::AccT accum(T * beg , T* end)  //typename 
 {
     typedef typename AccumulationTraits<T>::AccT Acct;
 
-    Acct total = Acct();
+    Acct total = AccumulationTraits<T>::zero();
 
     while(beg != end)
     {
