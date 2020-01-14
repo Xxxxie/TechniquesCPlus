@@ -9,6 +9,7 @@
 #include "ReferenceCounting.h"
 #include "SmartPtr.h"
 #include "MyStack.hpp"
+#include "accum.hpp"
 
 inline
 std::ostream& operator<<(std::ostream &s, const NLComponent &c)
@@ -75,12 +76,23 @@ void StackTest()
 	vStack.pop();
 }
 
+void accumTest()
+{
+	int num[] = {1,2,3,4,5};
+	std::cout<<"the average value of the integer value is "<<accum(&num[0],&num[5]) /5<<std::endl;
+
+	char name[] = "templates";
+	int length = sizeof(name) -1;
+
+	std::cout<< "the average value of  the characters in \"" <<name<<"\" is " << accum(&name[0],&name[length]) / length <<std::endl;
+	}
 
 int main()
 {	
-	StackTest();
+	//StackTest();
 	//CountTest();
-    std::cout << "Hello World!\n"; 
+	accumTest();
+    std::cout << "Hello World!"<<std::endl; 
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
