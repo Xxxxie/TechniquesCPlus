@@ -93,4 +93,5 @@ int main()
 	//CountTest();
 	accumTest();
     std::cout << "Hello World!"<<std::endl; 
+	system("pause");
 }
